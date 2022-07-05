@@ -21,6 +21,18 @@ jobs:
  
       - run: 
           name: Build Flutter (Android)
-          command: flutter build apk --release
+          command: |
+            flutter pub get
+            flutter clean
+            flutter build apk --release
       - store_artifacts:
             path: build/app/outputs/flutter-apk/app-release.apk
+            
+      - run: 
+          name: Build Flutter (iOS)
+          command: |
+            flutter pub get
+            flutter clean
+            flutter build ios --release --no-codesign
+      - store_artifacts:
+            path:  build/ios/archive/MyApp.xcarchive
