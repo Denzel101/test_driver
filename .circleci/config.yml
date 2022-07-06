@@ -23,6 +23,7 @@ jobs:
     docker: 
       - image: cirrusci/flutter
     steps:
+      - checkout
       - run: 
           name: Build Flutter (Android)
           command: |
