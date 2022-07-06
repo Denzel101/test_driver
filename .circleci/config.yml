@@ -5,7 +5,7 @@ version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  test:
+  flutter_test:
     description: Flutter App Test
     docker:
       - image: cirrusci/flutter 
@@ -18,7 +18,8 @@ jobs:
             flutter pub get
             flutter analyze
             flutter test
-  build:
+            
+  flutter_build:
     description: App Bundle Build
     docker: 
       - image: cirrusci/flutter
@@ -45,7 +46,7 @@ jobs:
 workflows:
   test_and_build:
     jobs:
-    - test
-    - build:
+    - flutter_test
+    - flutter_build:
         requires:
-          - test
+          - flutter_test
